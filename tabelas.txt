@@ -1,0 +1,223 @@
+DATABASE dideweb_db
+
+Tabela Lojas
+  id 			int(11), não nulo, auto incremento, chave primária
+  codigo		varchar(20), não nulo
+  razao_social		varchar(100), não nulo
+  nome_fantasia		varchar(50), não nulo
+  CNPJ			varchar(14)
+  IE			varchar(12) 
+  logo			varchar(40)
+  email			varchar(100)
+  telefone		varchar(11), não nulo
+  endereco1		varchar(50)
+  endereco2		varchar(50)
+  cidade		varchar(20)
+  estado		varchar(20)
+  cep			varchar(8)
+  pais			varchar(25)
+  cabecalho_recibo	text
+  rodape_recibo		text
+
+Tabela Categorias
+  id			int(11), não nulo, auto incremento, chave primária (criar 1: padrão)
+  codigo		varchar(20), não nulo
+  nome			varchar(50), não nulo
+  imagem		varchar(100), default:sem_imagem.png
+  detalhes		text
+
+Tabela Produtos
+  id			int(11), não nulo, auto incremento, chave primária
+  codigo		varchar(50) índice
+  nome			char(255), indice
+  id_categoria		int(11), não nulo, default:1
+  preco			decimal(10,2) não nulo
+  imagem		varchar(255), default:sem_imagem.png
+  custo			decimal(10,2)
+  tipo			tinyint(1) default:0 simples 1 combo)
+  detalhes		text
+  alerta_quantidade	decimal(10,2)
+  encomendavel		varchar(2) on = exibir na tela de encomenda / null = não exibir
+
+Tabela Produtos_loja_qtde
+  id			int(11), não nulo, auto incremento, chave primária
+  id_produto		int(11) indice, não nulo
+  id_loja		int(11) indice, não nulo
+  qtde			decimal(10,2)
+
+Tabela Fornecedor
+  id			int(11), não nulo, auto incremento, chave primária
+  nome			varchar(50), não nulo
+  email			varchar(100)
+  telefone		varchar(15), não nulo
+  endereco1		varchar(50)
+  endereco2		varchar(50)
+  cidade		varchar(20)
+  estado		varchar(20)
+  cep			varchar(8)
+  vendedor		varchar(30)
+  telefone_vendedor	varchar(11)
+  dias_visitas		varchar(50)
+  dias_entregas		varchar(50)
+
+Tabela Grupos (admin, atend., produção)
+  id			int(11), não nulo, auto incremento, chave primária
+  nome			varchar(20) não nulo
+  descricao		varchar(100)
+
+Tabela Grupos_permissoes
+  id
+  id_grupos
+  opcao
+  valor
+
+Tabela Funcionarios
+  id			int(11), não nulo, auto incremento, chave primária
+  id_loja		int(11), não nulo
+  codigo		varchar(50), não nulo
+  nome			varchar(50), indice, não nulo
+  sobrenome		varchar(50), não nulo
+  DN			int(11), não nulo
+  Genero		varchar(20) 
+  endereco1		varchar(50)
+  endereco2		varchar(50)
+  cidade		varchar(20)
+  estado		varchar(20)
+  cep			varchar(8)
+  email			varchar(100)
+  Telefone		varchar(11), não nulo
+  id_grupo		int(11), não nulo
+  foto			varchar(55), default:sem_imagem.png
+  Data admissão		int(11) não nulo
+  Data demissão		int(11)
+
+Tabela Clientes
+  id			int(11), não nulo, auto incremento, chave primária
+  id_loja		int(11), não nulo
+  nome			varchar(50), indice, não nulo
+  sobrenome		varchar(50) não nulo
+  DN			int(11) não nulo
+  endereco1		varchar(50)
+  endereco2		varchar(50)
+  cidade		varchar(20)
+  estado		varchar(20)
+  cep			varchar(8)
+  email			varchar(100)
+  Trabalho		varchar(50)
+  Celular 		varchar(11) não nulo
+  telefone contato	varchar(11)
+  Limite fiado		decimal(10,2)
+  Data cadastro		int(11) default:timestamp
+
+Tabela Vale_presente
+  id			int(11), não nulo, auto incremento, chave primária 
+  codigo		varchar(20) indice
+  id_funcionario	int(11), não nulo
+  id_cliente 		int(11), não nulo
+  id_loja		int(11), não nulo
+  criado_em		int(11), não nulo, default:timestamp
+  expira_em		int(11), não nulo
+  valor			decimal(10,2), não nulo
+  obs			text
+
+Tabela Formas de pagamento
+  id			int(11), não nulo, auto incremento, chave primária 
+  descricao		varchar(50), não nulo
+  parcelas_aceitas	int(2), não nulo
+  taxa			int(2)
+  taxa_parcelado	int(2)
+
+Tabela Encomendas
+  id			int(11), não nulo, auto incremento, chave primária 
+  id_loja		int(11) não nulo
+  id_cliente		int(11) não nulo
+  paradiahora		int(11)
+  entregar		tinyint(1) 0 vem buscar 1 entregar
+  endereco1		varchar(50)
+  endereco2		varchar(50)
+  origem		tinyint(1) 0 telefone 1 pessoalmente
+  id_pagamento		int(11) se vazio = a receber
+  quando_pegou		int(11) default_timestamp
+  id_funcionario	int(11)
+  detalhes		text
+  status		tinyint(1) 0 fechada, 1 aberta, 2 cancelada
+
+Tabela Encomendas_itens
+  id			int(11), não nulo, auto incremento, chave primária 
+  id_encomenda		int(11), não nulo, indice
+  id_produto		int(11), não nulo
+  qtde			int(11), não nulo
+  preço			decimal(10,2), não nulo
+  subtotal		decimal(10,2), não nulo
+
+Tabela Vendas
+  id			int(11), não nulo, auto incremento, chave primária 
+  id_loja  		int(11), não nulo
+  id_funcionario	int(11), não nulo
+  id_cliente		int(11), default:1 consumidor, se for fiado = id_cliete
+  referencia		varchar(50)
+  abertura		int(11) não nulo default:timestamp
+  total			decimal(10,2)
+  id_pagamento		int(11) se vazio = a receber
+  status		tinyint(1) 0 fechada, 1 aberta, 2 cancelada
+  fechamento 		int(11) default:timestamp se nulo = aberta
+   
+Tabela Vendas_itens
+  id			int(11), não nulo, auto incremento, chave primária 
+  id_venda		int(11), não nulo
+  if_funcionario  	int(11), não nulo
+  id_produto		int(11), não nulo
+  qtde			int(11), não nulo
+  preço			decimal(10,2), não nulo
+  subtotal		decimal(10,2), nao nulo
+  hrlancamento		int(11) default:timestamp
+
+Tabela Pagamentos
+  id			int(11), não nulo, auto incremento, chave primária 
+  id_loja		int(11), não nulo
+  id_venda		int(11)
+  id_encomenda		int(11)
+  id_forma_pagamento	int(11), não nulo
+  parcelas		int(11), não nulo default: 1
+
+Tabela Despesas
+  id			int(11), não nulo, auto incremento, chave primária 
+  id_funcionario	int(11), não nulo
+  id_loja		int(11), não nulo
+  data			int(11), não nulo, índice
+  total_despesa		decimal(10,2), não nulo
+  
+Tabela Despesas_itens
+  id			int(11), não nulo, auto incremento, chave primária 
+  id_despesa		int(11), não nulo, índice
+  referencia		varchar(50), não nulo
+  valor			decimal(10,2), não nulo
+
+Tabela Caixas
+  id			int(11), não nulo, auto incremento, chave primária 
+  id_loja		int(11), não nulo
+  dinheiro_inicial	int(11), não nulo
+  data			int(11), default: timestamp
+  total_dinheiro	decimal(10,2)
+  total_debito		decimal(10,2)
+  total_credito		decimal(10,2)
+  total_cheque		decimal(10,2)
+  total_ticket		decimal(10,2)
+  total_vales		decimal(10,2)
+  total_fiado		decimal(10,2)
+  fechado_em		int(11)
+  status		tinyint(1) 0 fechada, 1 aberta
+  id_funcionario	int(11)
+  detalhes		text
+ 
+Tabela Mercado
+  id			int(11), não nulo, auto incremento, chave primária 
+  id_loja		int(11), não nulo
+  data			int(11), não nulo
+  id_funcionario	int(11), não nulo
+  lista			text
+    
+ 
+Tabela Combo
+Tabela Compras
+Tabela Motivos_Cancelamento_Vendas

@@ -1,0 +1,96 @@
+aside section ul li ul div.li_divider {
+    border-top: 1px solid #222;
+}
+
+.table > tbody > tr > td {
+     vertical-align: middle !important;
+}
+
+.sem_miniatura_lista{
+	width: 70px;
+	height: 56px;
+}
+
+#sliderfiado .slider-selection {
+	background: #FF9900;
+}
+
+#sliderfiado .slider-handle {
+	background: #3C8DBC;
+}
+
+.fixo {
+    z-index: 199;
+    position: fixed;
+    bottom: 0px;
+    right: 10px;
+}
+
+@keyframes flickerAnimation { /* flame pulses */
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+
+.goto_topo{
+    font-size: 2em;
+    opacity:1;  
+    transform: rotate(-45deg);
+    animation: flickerAnimation 1s infinite;
+}
+
+.input-group-addon{
+    background: #DDD !important;
+    border: 1px solid #BBB !important;
+}
+
+.pdv{
+
+}
+
+.pdv_comanda{
+  background: #F5F5F5;
+  border: 1px solid #DCDCDC;
+  padding: 15px;
+}
+
+div.pdv_comanda td {
+  background-color: #F5DEB3;
+}
+
+div.pdv_comanda thead {
+  color: white;
+  background: #D2691E;
+}
+
+.pdv_produtos{
+  padding: 0 2px 0 2px !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.marquee {
+  overflow-x: hidden;
+}
+
+.scroll-element.scroll-x {
+  display: none !important;
+}
+
+.item_add_comanda, .pdv_comanda{
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12) !important;
+}
+
+.item_add_comanda:hover{
+  transform: scale(.9) rotate(2deg);
+}
+
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+  padding-right: 2px;
+  padding-left: 2px;
+}

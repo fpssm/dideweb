@@ -1,0 +1,30 @@
+footer: sidebar right
+Usar: ion_auth, https://github.com/jmosbech/StickyTableHeaders
+https://www.w3schools.com/sql/sql_groupby.asp
+	
+
+ver: codeigniter flash data,  crud full calendar, 
+
+verificação de login com controlador próprio
+http://www.dicascodeigniter.com.br/como-criar-seu-proprio-controller-no-codeigniter/
+
+como usar o get_instance()
+http://www.dicascodeigniter.com.br/como-usar-os-recursos-do-codeigniter-fora-de-um-controller-ou-como-usar-o-get_instance/
+
+no caso de usar ids estrangeiras verificar
+http://www.dicascodeigniter.com.br/importancia-das-transactions/
+
+variáveis e loops com template parser ao invés de php nas views
+http://www.dicascodeigniter.com.br/como-usar-o-template-parser-no-codeigniter/
+
+
+busca interna=======
+https://www.agenciamestre.com/web-analytics/site-search-tutorial-seo-busca-interna/
+
+https://cse.google.com.br/cse/
+
+====================================
+
+zerar tabela, resetar auto_increment
+
+TRUNCATE TABLE nome_tabela
